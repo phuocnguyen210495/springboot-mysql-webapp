@@ -1,0 +1,134 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+		<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@page isELIgnored="false"%>
+<!DOCTYPE html>
+<html>
+<style type="text/css">
+    *{
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: #eee;
+    font: normal 13px/1.5;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #333;
+}
+.wrapper {
+    width: 705px;
+    margin: 20px auto;
+    padding: 20px;
+}
+h1 {
+    display: inline-block;
+    background-color: #fff;
+    color: #ef4478;
+    font-size: 16px;
+    font-weight: normal;
+    text-transform: uppercase;
+    padding: 4px 20px;
+    float: left;
+    border-radius: 50px;
+}
+.clear {
+    clear: both;
+}
+.items {
+    display: block;
+    margin: 20px 0;
+}
+.item {
+    background-color: #fff;
+    float: left;
+    margin: 0 10px 10px 0;
+    width: 205px;
+    padding: 10px;
+     
+}
+.item img {
+    display: block;
+    margin: auto;
+}
+h2 {
+    font-size: 12px;
+    display: block;
+    border-bottom: 1px solid #ccc;
+    margin: 0 0 10px 0;
+    padding: 0 0 5px 0;
+}
+button {
+    border: 1px solid #ef4478;
+    padding: 4px 14px;
+    background-color: #ef4478;
+    color: #fff;
+    text-transform: uppercase;
+    float: right;
+    margin: 5px 0;
+    font-weight: 400;
+    cursor: pointer;
+    font-family: 'Roboto Condensed', sans-serif;
+    border-radius: 50px;
+    
+}
+button:focus {
+    outline: none !important;
+}
+span {
+    float: right;
+}
+        
+p {
+    font-size: 14px;
+}
+.card {
+    display: inline-block;
+    background: url(../img/cart.png) no-repeat 0 0;
+    width: 24px;
+    height: 24px;
+    margin: 0 10px 0 0;
+}
+</style>
+<head>
+<meta charset="UTF-8">
+<title>Shopping Cart</title>
+</head>
+<body>
+	<br>
+	<br>
+	<br>
+	<div class="wrapper">
+	<h1>You have added a product to shopping cart</h1>
+	<div class="item">
+			<span><i class="card"></i></span>
+			<form class="form-signin">
+				<c:forEach items="${items}" var="items" varStatus="status">
+					<tr>
+						<h2>Product Name: ${items.productName}</h2>
+						<h2>Product Qty: ${items.productQty}</h2>
+						<h2>Product Sum: $ ${items.productSum}</h2>
+						<br>
+					</tr>
+				</c:forEach>
+			</form>
+
+			<form class="form-signin" method="POST" action="/placeOrder">
+				<button>Place Order</button>
+			</form>
+
+			<form method="POST" action="/myWeb/front/home.jsp">
+				<button>Add another product</button>
+			</form>
+			
+			<form class="form-signin" method="POST" action="/emptyCart">
+				<button>Empty Shopping Cart</button>
+			</form>
+
+			<form method="POST" action="/myWeb/front/home.jsp">
+				<button>Back To Homepage</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
